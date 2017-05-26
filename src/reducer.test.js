@@ -27,7 +27,7 @@ describe('newGame func', ()=>{
 
     let state = {
       guesses: [1,3,5,7],
-      feedback: `You're ice cold.`,
+      feedback: 'You\'re ice cold.',
       correctAnswer: 66,
       showInfoModal: false 
     };
@@ -46,33 +46,41 @@ describe('makeGuess func', () => {
 
     let state = {
       guesses: [1,3,5,7],
-      feedback: `You're ice cold.`,
+      feedback: 'You\'re ice cold.',
       correctAnswer: 66,
       showInfoModal: false
     };
     //test all difference scenarios
     state = reducer(state, makeGuess(21));
     expect(state.guesses).toEqual([1,3,5,7,21]);
-    expect(state.feedback).toBe(`You're Cold...`);
+    expect(state.feedback).toBe('You\'re Cold...');
     expect(state.showInfoModal).toBe(false);
 
     state = reducer(state, makeGuess(49));
     expect(state.guesses).toEqual([1,3,5,7,21,49]);
-    expect(state.feedback).toBe(`You're Warm`);
+    expect(state.feedback).toBe('You\'re Warm');
     expect(state.showInfoModal).toBe(false);
 
     state = reducer(state, makeGuess(60));
     expect(state.guesses).toEqual([1,3,5,7,21,49,60]);
-    expect(state.feedback).toBe(`You're Hot!`);
+    expect(state.feedback).toBe('You\'re Hot!');
     expect(state.showInfoModal).toBe(false);
 
     state = reducer(state, makeGuess(66));
     expect(state.guesses).toEqual([1,3,5,7,21,49,60,66]);
-    expect(state.feedback).toBe(`You got it!`);
+    expect(state.feedback).toBe('You got it!');
     expect(state.showInfoModal).toBe(false);
   });
 });
 
-describe('showInfoModal', () => {
-  it('should toggle the show in')
-})
+describe('toggleInfoModal func', () => {
+  it('should toggle info modal screen', () => {
+    let state = {
+      showInfoModal: true
+    };
+
+    state = reducer(state, toggleInfoModal());
+    expect(state.showInfoModal).toEqual(false);
+  });
+
+});
